@@ -82,6 +82,9 @@ gui
 const material = new THREE.ShaderMaterial({
     vertexShader: holographicVertexShader,
     fragmentShader: holographicFragmentShader,
+    uniforms: {
+        uTime: new THREE.Uniform(0)
+    }
 });
 
 /**
@@ -127,6 +130,9 @@ const clock = new THREE.Clock();
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime();
+
+    // Update material
+    material.uniforms.uTime.value = elapsedTime;
 
     // Rotate objects
     if(suzanne)
